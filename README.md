@@ -1,0 +1,2 @@
+# QtMemoryGame
+also called pairs
