@@ -28,13 +28,25 @@ SOURCES += \
         mainwindow.cpp \
     card.cpp \
     gameboard.cpp \
-    view.cpp
+    view.cpp \
+    settingswindow.cpp \
+    carddatamanager.cpp \
+    carddata.cpp \
+    cardanimation.cpp
 
 HEADERS += \
         mainwindow.h \
     card.h \
     gameboard.h \
-    view.h
+    view.h \
+    settingswindow.h \
+    carddatamanager.h \
+    carddata.h \
+    cardanimation.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    settingswindow.ui
+
+RESOURCES += \
+    resources/resources.qrc

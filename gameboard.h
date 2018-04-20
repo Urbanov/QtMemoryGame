@@ -2,27 +2,34 @@
 #define GAMEBOARD_H
 
 #include <QGraphicsScene>
-#include <QTimer>
 #include "card.h"
+#include "carddatamanager.h"
 
-class GameBoard : public QGraphicsScene
-{
+class GameBoard : public QGraphicsScene {
 public:
-    GameBoard(int width, int height);
+    GameBoard(QObject* parent);
     void start();
-    void reset();
 
 private:
-    static constexpr int CARD_SIZE = 90;
-    static constexpr int CARD_SPACE = 10;
-    static constexpr int COOLDOWN_TIME = 1000;
+    static constexpr int DEFAULT_WIDTH = 3;
+    static constexpr int DEFAULT_HEIGHT = 4;
+    static constexpr CardData::ImageType DEFAULT_TYPE = CardData::ImageType::cars;
+
     int m_width;
     int m_height;
-    Card* m_previous;
-    QTimer* m_timer;
+    CardData::ImageType m_type;
+    Card* m_first_card;
+    Card* m_second_card;
+    CardDataManager m_manager;
+    bool m_enabled;
+
+public slots:
+    void newGame();
+    void setSize(int width, int height);
 
 private slots:
     void cardSelected(Card* card);
+    void animationFinished();
 };
 
 #endif // GAMEBOARD_H

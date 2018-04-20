@@ -1,7 +1,12 @@
 #include "view.h"
 #include <QGraphicsScene>
 
+View::View()
+{
+    setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+}
+
 void View::resizeEvent(QResizeEvent* event)
 {
-    fitInView(scene()->sceneRect(), Qt::KeepAspectRatio);
+    fitInView(sceneRect(), Qt::KeepAspectRatio);
 }

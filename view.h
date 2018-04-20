@@ -3,11 +3,10 @@
 
 #include <QGraphicsView>
 
-class View : public QGraphicsView
-{
+class View : public QGraphicsView {
+
 public:
-    View() = default;
+    View();
     void resizeEvent(QResizeEvent* event) override;
 };
-
 #endif // VIEW_H
