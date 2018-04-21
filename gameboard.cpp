@@ -1,26 +1,29 @@
 #include "gameboard.h"
 #include <QGraphicsView>
 
-GameBoard::GameBoard(QObject* parent)
-    : QGraphicsScene(parent)
-    , m_width(DEFAULT_WIDTH)
-    , m_height(DEFAULT_HEIGHT)
-    , m_type(DEFAULT_TYPE)
+GameBoard::GameBoard(const Settings* settings, QObject* parent)
+    : m_settings(settings)
+    , QGraphicsScene(parent)
     , m_first_card(nullptr)
     , m_second_card(nullptr)
+    , m_remaining(0)
     , m_manager()
     , m_enabled(true)
 {
-    setBackgroundBrush(QPixmap(":/images/default/background.png"));
+    setBackgroundBrush(QPixmap(":/generic/background.png"));
     start();
 }
 
 void GameBoard::start()
 {
-    m_manager.initializeGenerator(m_width * m_height);
-    m_manager.loadImages(m_type);
-    for (int pos_x = 0; pos_x < m_width; ++pos_x) {
-        for (int pos_y = 0; pos_y < m_height; ++pos_y) {
+    int width = m_settings->width();
+    int height = m_settings->height();
+
+    m_remaining = width * height;
+    m_manager.initializeGenerator(width * height);
+    m_manager.loadImages(m_settings->imageType());
+    for (int pos_x = 0; pos_x < width; ++pos_x) {
+        for (int pos_y = 0; pos_y < height; ++pos_y) {
             Card* card = new Card(std::forward<CardData>(m_manager.nextCard()));
             card->setRect(0, 0, Card::SIZE, Card::SIZE);
             card->setPos(Card::TILE_SIZE * pos_x, Card::TILE_SIZE * pos_y);
@@ -29,7 +32,8 @@ void GameBoard::start()
             addItem(card);
         }
     }
-    setSceneRect(0, 0, m_width * Card::TILE_SIZE - Card::SPACE, m_height * Card::TILE_SIZE - Card::SPACE);
+    setSceneRect(0, 0, width * Card::TILE_SIZE - Card::SPACE, height * Card::TILE_SIZE - Card::SPACE);
+    m_timer.start();
 }
 
 void GameBoard::cardSelected(Card* card)
@@ -70,6 +74,7 @@ void GameBoard::animationFinished()
 
         // match
         if (m_first_card->id() == m_second_card->id()) {
+            m_remaining -= 2;
             m_first_card->remove();
             m_second_card->remove();
         }
@@ -88,6 +93,11 @@ void GameBoard::animationFinished()
 
     // no animations
     m_enabled = true;
+
+    // no more card remaining
+    if (m_remaining == 0) {
+        emit gameEnded(m_timer.elapsed() / 1000);
+    }
 }
 
 void GameBoard::newGame()
@@ -95,15 +105,7 @@ void GameBoard::newGame()
     m_first_card = nullptr;
     m_second_card = nullptr;
     m_enabled = true;
+    m_remaining = 0;
     QGraphicsScene::clear();
     start();
 }
-
-void GameBoard::setSize(int width, int height)
-{
-    m_width = width;
-    m_height = height;
-    m_type = CardData::ImageType::animals;
-}
-
-

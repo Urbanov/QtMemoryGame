@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/generic">
+        <file>background.png</file>
+        <file>card_back.png</file>
+        <file>settings.png</file>
+    </qresource>
+</RCC>

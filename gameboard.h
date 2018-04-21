@@ -4,28 +4,32 @@
 #include <QGraphicsScene>
 #include "card.h"
 #include "carddatamanager.h"
+#include "settings.h"
+#include <QElapsedTimer>
 
 class GameBoard : public QGraphicsScene {
+
+    Q_OBJECT
+
 public:
-    GameBoard(QObject* parent);
-    void start();
+    GameBoard(const Settings* settings, QObject* parent);
 
 private:
-    static constexpr int DEFAULT_WIDTH = 3;
-    static constexpr int DEFAULT_HEIGHT = 4;
-    static constexpr CardData::ImageType DEFAULT_TYPE = CardData::ImageType::cars;
-
-    int m_width;
-    int m_height;
-    CardData::ImageType m_type;
+    const Settings* m_settings;
     Card* m_first_card;
     Card* m_second_card;
+    int m_remaining;
     CardDataManager m_manager;
     bool m_enabled;
+    QElapsedTimer m_timer;
+
+    void start();
+
+signals:
+    void gameEnded(int time);
 
 public slots:
     void newGame();
-    void setSize(int width, int height);
 
 private slots:
     void cardSelected(Card* card);

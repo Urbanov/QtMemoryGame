@@ -25,7 +25,7 @@ CardAnimation::CardAnimation(Card* card)
     m_scale_to_front.setKeyValueAt(0.5, 0);
     m_scale_to_front.setKeyValueAt(1, 1);
     m_scale_to_front.setEasingCurve(QEasingCurve::OutQuad);
-    connect(&m_scale_to_front, &QPropertyAnimation::valueChanged, card, [=](){ card->update(); });
+    connect(&m_scale_to_front, &QPropertyAnimation::valueChanged, card, [=]() { card->update(); });
     connect(&m_scale_to_front, &QPropertyAnimation::finished, card, &Card::animationFinished);
 
     m_scale_to_back.setDuration(FLIP_DURATION + COOLDOWN);
@@ -33,7 +33,7 @@ CardAnimation::CardAnimation(Card* card)
     m_scale_to_back.setKeyValueAt(0.5, 0);
     m_scale_to_back.setKeyValueAt(1, 1);
     m_scale_to_back.setEasingCurve(QEasingCurve::InQuint);
-    connect(&m_scale_to_back, &QPropertyAnimation::valueChanged, card, [=](){ card->update(); });
+    connect(&m_scale_to_back, &QPropertyAnimation::valueChanged, card, [=]() { card->update(); });
     connect(&m_scale_to_back, &QPropertyAnimation::finished, card, &Card::animationFinished);
 
     m_fade_out.setDuration(FLIP_DURATION + COOLDOWN);

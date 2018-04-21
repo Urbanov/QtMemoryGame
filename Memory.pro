@@ -32,7 +32,8 @@ SOURCES += \
     settingswindow.cpp \
     carddatamanager.cpp \
     carddata.cpp \
-    cardanimation.cpp
+    cardanimation.cpp \
+    settings.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -42,11 +43,15 @@ HEADERS += \
     settingswindow.h \
     carddatamanager.h \
     carddata.h \
-    cardanimation.h
+    cardanimation.h \
+    settings.h
 
 FORMS += \
         mainwindow.ui \
     settingswindow.ui
 
 RESOURCES += \
-    resources/resources.qrc
+    resources/generic/generic.qrc \
+    resources/fruits/fruits.qrc \
+    resources/cars/cars.qrc \
+    resources/animals/animals.qrc

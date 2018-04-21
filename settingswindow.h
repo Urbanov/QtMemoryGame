@@ -2,6 +2,7 @@
 #define SETTINGSWINDOW_H
 
 #include <QDialog>
+#include "settings.h"
 
 namespace Ui {
 class SettingsWindow;
@@ -13,13 +14,13 @@ class SettingsWindow : public QDialog {
 
 public:
     explicit SettingsWindow(QWidget* parent = 0);
+    const Settings* get() const;
     ~SettingsWindow();
+    void show();
 
 private:
     Ui::SettingsWindow* ui;
-
-signals:
-    void sizeSettingChanged(int width, int height);
+    Settings m_settings;
 };
 
 #endif // SETTINGSWINDOW_H

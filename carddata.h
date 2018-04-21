@@ -11,6 +11,7 @@ public:
     enum ImageType {
         animals,
         cars,
+        fruits,
         none
     };
     Q_ENUM(ImageType)
