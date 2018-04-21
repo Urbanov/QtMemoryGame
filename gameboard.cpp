@@ -94,7 +94,7 @@ void GameBoard::animationFinished()
     // no animations
     m_enabled = true;
 
-    // no more card remaining
+    // no more cards remaining
     if (m_remaining == 0) {
         emit gameEnded(m_timer.elapsed() / 1000);
     }
