@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>MemoryGame</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources/generic/generic.qrc">
+    <normaloff>:/generic/icon.png</normaloff>:/generic/icon.png</iconset>
+  </property>
   <property name="tabShape">
    <enum>QTabWidget::Rounded</enum>
   </property>
@@ -69,6 +73,8 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="resources/generic/generic.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Settings</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources/generic/generic.qrc">
+    <normaloff>:/generic/wrench.png</normaloff>:/generic/wrench.png</iconset>
+  </property>
   <property name="modal">
    <bool>true</bool>
   </property>

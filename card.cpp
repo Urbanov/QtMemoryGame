@@ -7,7 +7,7 @@ Card::Card(CardData&& data)
     , m_scale(1)
 {}
 
-void Card::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void Card::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
     if (m_active) {
         painter->setBrush(QBrush(m_data.front()));
@@ -20,7 +20,7 @@ void Card::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
     painter->drawRoundedRect(rect(), RADIUS, RADIUS);
 }
 
-void Card::mousePressEvent(QGraphicsSceneMouseEvent* event)
+void Card::mousePressEvent(QGraphicsSceneMouseEvent* /*event*/)
 {
     emit selected(this);
 }
