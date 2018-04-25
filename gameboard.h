@@ -23,13 +23,13 @@ private:
     bool m_enabled;
     QElapsedTimer m_timer;
 
-    void start();
+    void startGame();
 
 signals:
     void gameEnded(int time);
 
 public slots:
-    void newGame();
+    void resetGame();
 
 private slots:
     void cardSelected(Card* card);

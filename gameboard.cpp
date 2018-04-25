@@ -11,10 +11,10 @@ GameBoard::GameBoard(const Settings* settings, QObject* parent)
     , m_enabled(true)
 {
     setBackgroundBrush(QPixmap(":/generic/background.png"));
-    start();
+    startGame();
 }
 
-void GameBoard::start()
+void GameBoard::startGame()
 {
     int width = m_settings->width();
     int height = m_settings->height();
@@ -100,12 +100,12 @@ void GameBoard::animationFinished()
     }
 }
 
-void GameBoard::newGame()
+void GameBoard::resetGame()
 {
     m_first_card = nullptr;
     m_second_card = nullptr;
     m_enabled = true;
     m_remaining = 0;
     QGraphicsScene::clear();
-    start();
+    startGame();
 }

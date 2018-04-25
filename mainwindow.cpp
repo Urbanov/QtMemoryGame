@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget* parent)
     view->setScene(board);
     ui->verticalLayout->addWidget(view);
 
-    connect(ui->actionNewGame, &QAction::triggered, board, &GameBoard::newGame);
+    connect(ui->actionNewGame, &QAction::triggered, board, &GameBoard::resetGame);
     connect(ui->actionSettings, &QAction::triggered, settings, &SettingsWindow::show);
     connect(board, &GameBoard::sceneRectChanged, view, [=]() { view->resizeEvent(nullptr); });
     connect(board, &GameBoard::gameEnded, this, [=](int time) {
